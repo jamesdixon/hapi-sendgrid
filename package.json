@@ -1,0 +1,28 @@
+{
+  "name": "hapi-sendgrid",
+  "version": "0.0.1",
+  "description": "SendGrid client plugin for Hapi.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamesdixon/hapi-sendgrid.git"
+  },
+  "keywords": [
+    "hapi",
+    "sendgrid"
+  ],
+  "author": "James Dixon <jim.w.dixon@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamesdixon/hapi-sendgrid/issues"
+  },
+  "homepage": "https://github.com/jamesdixon/hapi-sendgrid",
+  "dependencies": {
+    "hoek": "^2.15.0",
+    "joi": "^6.7.0",
+    "sendgrid": "^1.9.2"
+  }
+}
