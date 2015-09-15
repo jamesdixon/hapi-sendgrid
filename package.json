@@ -4,7 +4,7 @@
   "description": "SendGrid client plugin for Hapi.js",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "lab"
   },
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "sendgrid"
   ],
   "author": "James Dixon <jim.w.dixon@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jamesdixon/hapi-sendgrid/issues"
   },
