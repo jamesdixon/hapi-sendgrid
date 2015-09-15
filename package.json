@@ -21,8 +21,15 @@
   },
   "homepage": "https://github.com/jamesdixon/hapi-sendgrid",
   "dependencies": {
+    "bluebird": "2.10.0",
     "hoek": "^2.15.0",
     "joi": "^6.7.0",
     "sendgrid": "^1.9.2"
+  },
+  "devDependencies": {
+    "code": "1.5.0",
+    "hapi": "10.0.0",
+    "lab": "5.16.1",
+    "nock": "2.11.0"
   }
 }

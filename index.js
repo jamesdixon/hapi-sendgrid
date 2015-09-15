@@ -1,5 +1,7 @@
 var Hoek = require('hoek'),
-    Joi = require('joi');
+    Joi = require('joi'),
+    HapiSendGridClient = require('./client'),
+    Promise = require('bluebird');
 
 var internals = {
   defaults: {
@@ -13,32 +15,7 @@ internals.schema = Joi.object({
     password: Joi.string(),
     apiKey: Joi.string(),
     clientOptions: Joi.object(),
-    emailOptions: Joi.object({
-      smtpapi: Joi.func(),
-      to: Joi.array().items(Joi.string().email()),
-      toname: Joi.array().items(Joi.string()),
-      from: Joi.string().email(),
-      fromname: Joi.string(),
-      subject: Joi.string(),
-      text: Joi.string(),
-      html: Joi.string(),
-      bcc: Joi.array().items(Joi.string().email()),
-      cc: Joi.array().items(Joi.string().email()),
-      replyto: Joi.string().email(),
-      date: Joi.date(),
-      files: Joi.array().items(Joi.object({
-        filename: Joi.string(),
-        contentType: Joi.string(),
-        cid: Joi.string(),
-        path: Joi.string(),
-        url: Joi.string(),
-        content: Joi.string() || Joi.type(Buffer, 'Buffer')
-      })
-      .and('filename', 'content')
-    ),
-      file_data: Joi.object(),
-      headers: Joi.object()
-    })
+    emailOptions: Joi.object(),
   })
   .min(1)
   .and('username', 'password')
@@ -56,8 +33,8 @@ exports.register = function(server, options, next) {
     sendgrid = require('sendgrid')(settings.username, settings.password, settings.clientOptions);
   }
 
-  // exposes the sendgrid client to the server
-  server.expose('client', sendgrid);
+  // expose the sendgrid client
+  server.expose('client', new HapiSendGridClient(Promise.promisifyAll(sendgrid), settings.emailOptions));
 
   next();
 }
